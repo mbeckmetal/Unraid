@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#dir = PLEX SOURCE LOCATION
+dir="/mnt/user/appdata/plexmediaserver/Library/Application Support/Plex Media Server/"
+#dest = BACKUP DESTINATION
+dest="/mnt/user/backups/data/plex/$(date +"%m-%d-%Y")/"
+#pdest = PARENT FOLDER OF DESTINATION
+pdest="/mnt/user/backups/data/plex/"
+
+#                         DON'T MODIFY BELOW THIS LINE AFTER SETUP
+#-------------------------------------------------------------------------------------------------------
+
+echo 'Backing Up Plex Databases'
+rsync -rvhPR --stats "$dir/Plug-in Support/./Databases/" $dest
+
+sleep 5
+
+echo ' '
+echo ' '
+echo 'Backing Up Plex Preferences.xml'
+rsync -rvhP --stats "$dir/Preferences.xml" $dest
+
+sleep 5
+
+chmod -R 777 $pdest
+
+echo ' '
+echo ' '
+echo "Searching for (and deleting) Old Backups"
+
+echo "Should Only Take a Second"
+
+#-------------------------------------------------------------------------------------------------------
+#                         DON'T MODIFY ABOVE THIS LINE AFTER SETUP
+
+#ENTER NUMERIC VALUE OF DAYS AFTER "-MTIME +"
+find $pdest* -mtime +2 -exec rm -rfd {} \;
+
+#UNCOMMENT THE NEXT LINE TO ENABLE GUI NOTIFICATION UPON COMPLETION
+#/usr/local/emhttp/webGui/scripts/notify -e "Unraid Server Notice" -s "Plex Backup" -d "A copy of the essential Plex data has been backed up, and old backups removed." -i "normal"
+
+
+echo 'All Done'
+
+exit
