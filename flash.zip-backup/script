@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#### SECTION 1 ####------------------------------------------------------------------------------------------------------
+#dir = WHATEVER FOLDER PATH YOU WANT TO SAVE TO
+dir=/mnt/user/backups/data/flash/
+
+echo 'Executing native unraid backup script'
+/usr/local/emhttp/webGui/scripts/flash_backup
+
+#### SECTION 2 ####------------------------------------------------------------------------------------------------------
+echo 'Remove symlink from emhttp'
+find /usr/local/emhttp/ -maxdepth 1 -name '*flash-backup-*.zip' -delete
+
+sleep 5
+
+#### SECTION 3 ####------------------------------------------------------------------------------------------------------
+echo 'Move Flash Zip Backup from Root to Backup Destination'
+mv /*-flash-backup-*.zip "$dir"
+
+sleep 5
+
+#### SECTION 4 ####------------------------------------------------------------------------------------------------------
+echo 'Deleting Old Backups'
+
+#ENTER NUMERIC VALUE OF DAYS AFTER "-MTIME +"
+find "$dir"* -mtime +2 -exec rm -rfv {} \;
+
+echo 'All Done'
+
+#### SECTION 5 ####------------------------------------------------------------------------------------------------------
+
+#UNCOMMENT THE NEXT LINE TO ENABLE GUI NOTIFICATION UPON COMPLETION 
+#/usr/local/emhttp/webGui/scripts/notify -e "Unraid Server Notice" -s "Flash Zip Backup" -d "A copy of the YOURTOWERNAME unraid flash disk has been backed up" -i "normal"
+
+exit
