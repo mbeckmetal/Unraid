@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#dir = SOURCE LOCATION
+#dir="/mnt/user/Backups/"
+#dest = BACKUP DESTINATION
+#dest="/mnt/remotes/trueNAS-Backups/$(date +"%m-%d-%Y")/"
+#pdest = PARENT FOLDER OF DESTINATION
+#pdest="/mnt/remotes/trueNAS-Backups/"
+
+
+#                         DON'T MODIFY BELOW THIS LINE AFTER SETUP
+#-------------------------------------------------------------------------------------------------------
+
+echo 'Backing Up'
+rsync -avh --progress --stats --delete -e ssh /mnt/user/backups/ root@10.10.50.197:/mnt/tank/server-backups/unraid-skynet-data/
+
+sleep 5
+
+#chmod -R 777 $pdest
+
+echo ' '
+echo ' '
+echo "Searching for (and deleting) Old Backups"
+
+echo "Should Only Take a Second"
+
+#-------------------------------------------------------------------------------------------------------
+#                         DON'T MODIFY ABOVE THIS LINE AFTER SETUP
+
+#ENTER NUMERIC VALUE OF DAYS AFTER "-MTIME +"
+#find $pdest* -mtime +7 -exec rm -rfd {} \;
+
+#UNCOMMENT THE NEXT LINE TO ENABLE GUI NOTIFICATION UPON COMPLETION
+#/usr/local/emhttp/webGui/scripts/notify -e "Unraid Server Notice" -s "Plex Backup" -d "A copy of the essential Skynet data has been backed up, and old backups removed." -i "normal"
+
+
+echo 'All Done'
+
+exit
