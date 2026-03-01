@@ -1,0 +1,83 @@
+#!/bin/bash
+
+# HD Movies
+echo 'HD Movies'
+echo ''
+rsync -avh --progress --stats --delete -e ssh /mnt/user/data/media/movies/MOVIES-HD/ root@10.10.50.197:/mnt/tank/media-backups/movies/MOVIES-HD/
+
+# 4k Movies
+echo '4K Movies'
+echo ''
+rsync -avh --progress --stats --delete -e ssh /mnt/user/data/media/movies/MOVIES-4K/ root@10.10.50.197:/mnt/tank/media-backups/movies/MOVIES-4K/
+
+# Animation
+echo 'Animation'
+echo ''
+rsync -avh --progress --stats --delete -e ssh /mnt/user/data/media/movies/ANIMATION/ root@10.10.50.197:/mnt/tank/media-backups/movies/ANIMATION/
+
+# Anime
+echo 'Anime'
+echo ''
+rsync -avh --progress --stats --delete -e ssh /mnt/user/data/media/movies/ANIME/ root@10.10.50.197:/mnt/tank/media-backups/movies/ANIME/
+
+# Hungarian
+echo 'Hungarian'
+echo ''
+rsync -avh --progress --stats --delete -e ssh /mnt/user/data/media/movies/HUNGARIAN/ root@10.10.50.197:/mnt/tank/media-backups/movies/HUNGARIAN/
+
+# Documentaries
+echo 'Documentaries'
+echo ''
+rsync -avh --progress --stats --delete -e ssh /mnt/user/data/media/movies/DOCUMENTARIES/ root@10.10.50.197:/mnt/tank/media-backups/movies/DOCUMENTARIES/
+
+# DVD
+echo 'DVD'
+echo ''
+rsync -avh --progress --stats --delete -e ssh /mnt/user/data/media/movies/MOVIES-DVD/ root@10.10.50.197:/mnt/tank/media-backups/movies/MOVIES-DVD/
+
+# Other
+echo 'Other'
+echo ''
+rsync -avh --progress --stats --delete -e ssh /mnt/user/data/media/movies/OTHER-VIDEOS/ root@10.10.50.197:/mnt/tank/media-backups/movies/OTHER-VIDEOS/
+
+# 3D
+echo '3D'
+echo ''
+rsync -avh --progress --stats --delete -e ssh /mnt/user/data/media/movies/3D/ root@10.10.50.197:/mnt/tank/media-backups/movies/3D/
+
+# TV Shows
+echo 'TV Shows'
+echo ''
+rsync -avh --progress --stats --delete -e ssh /mnt/user/data/media/tv-shows/HD-TV/ root@10.10.50.197:/mnt/tank/media-backups/tv_shows/tv_shows/
+
+# 4K TV Shows
+echo '4k TV Shows'
+echo ''
+rsync -avh --progress --stats --delete -e ssh /mnt/user/data/media/tv-shows/4K-TV/ root@10.10.50.197:/mnt/tank/media-backups/tv_shows/4k_tv_shows/
+
+echo ''
+# Books
+echo 'Books'
+echo ''
+rsync -avh --progress --stats --delete -e ssh /mnt/user/data/media/books/ root@10.10.50.197:/mnt/tank/media-backups/books/
+echo ''
+echo ''
+
+# Music
+echo 'Music'
+echo ''
+rsync -avh --progress --stats --delete -e ssh /mnt/user/data/media/music/ root@10.10.50.197:/mnt/tank/media-backups/music/
+echo ''
+echo ''
+
+# Photos
+echo 'Photos'
+echo ''
+sudo rsync -avh --progress --stats --delete -e ssh /mnt/user/photos/ root@10.10.50.197:/mnt/tank/media-backups/photos/
+echo ''
+echo ''
+
+
+echo 'ALL DONE'
+
+
